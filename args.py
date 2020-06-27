@@ -28,7 +28,7 @@ def argument_parser():
     # Train config
     group = parser.add_argument_group('Train config')
     group.add_argument('--model_name', type=str, default='bow', help='train model type')
-    group.add_argument('--batch_size', type=int, default=32,
+    group.add_argument('--batch_size', type=int, default=64,
                        help='The sequence number of a mini-batch data.')
     group.add_argument("--lr", type=float, default=0.001,
                        help="Learning rate used to train the model.")
@@ -44,6 +44,9 @@ def argument_parser():
     group.add_argument("--test_step", type=int, default=100,
                        help="log the train loss every n batches.")
 
+    group.add_argument("--min_freq", type=int, default=10,
+                       help="the most word times")
+
     # model save dir
     group = parser.add_argument_group('dir config')
     group.add_argument("--load_dir", type=str, default=None, help="load model")
@@ -52,7 +55,7 @@ def argument_parser():
 
     # token config
     group = parser.add_argument_group('token config')
-    group.add_argument('--maxlen', type=int, default=20, help='max sentence length')
+    group.add_argument('--maxlen', type=int, default=25, help='max sentence length')
     group.add_argument('--vocab_path', type=str, default='data/vocab/vocab.txt', help='vocab path')
     group.add_argument('--pretrain', type=str, default=None,
                        help='pretrain embedding path')
@@ -71,7 +74,7 @@ def argument_parser():
     group = parser.add_argument_group('Network config')
     group.add_argument('--tgt_size', type=int, default=6, help='target size')
     group.add_argument('--embed_size', type=int, default=300, help='embed size')
-    group.add_argument('--hidden_size', type=int, default=500, help='hidden size')
+    group.add_argument('--hidden_size', type=int, default=200, help='hidden size')
     group.add_argument('--num_layers', type=int, default=1, help='rnn num_layers')
     group.add_argument('--bidirectional', type=str2bool, default=False, help='rnn num_layers')
 

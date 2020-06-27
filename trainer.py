@@ -32,9 +32,7 @@ spacy_en = spacy.load('en')
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
-def tokenizer(text): # create a tokenizer function
-    # 返回 a list of <class 'spacy.tokens.token.Token'>
-    return [tok.text for tok in spacy_en.tokenizer(text)]
+from data.text_utils import tokenizer
 
 
 def default_load_data(mode='train', vocab=None, args=None):
@@ -117,26 +115,24 @@ class TorchProgram:
         #vocab = load_vocab(args.vocab_path)
         #self.vocab = vocab
 
-        import spacy
-        spacy_en = spacy.load('en')
 
-        def tokenizer(text):  # create a tokenizer function
-            # 返回 a list of <class 'spacy.tokens.token.Token'>
-            return [tok.text for tok in spacy_en.tokenizer(text)]
 
         TEXT = data.Field(sequential=True, tokenize=tokenizer, batch_first=True,
-                          lower=True, fix_length=20, init_token="<sos>", eos_token="<eos>")
+                          lower=True, fix_length=args.maxlen, init_token="<sos>", eos_token="<eos>")
         LENGTH = data.Field(sequential=False, use_vocab=False)
 
         train = MyDataset(args.dataset_files['train'], text_field=TEXT, len_field=LENGTH, test=False, aug=0)
 
-        TEXT.build_vocab(train)
+        TEXT.build_vocab(train, min_freq=args.min_freq, max_size=10000 )
+        LENGTH.build_vocab(train)
 
 
 
         # 统计词频
-        #Todo
-        TEXT.vocab.freqs.most_common(1)
+        #Todo ？
+       # TEXT.vocab.freqs.most_common(args.most_common)
+
+        print(TEXT.vocab.freqs.most_common(20))
 
         if args.pretrain:
             logger.info('Load pretrain embeddings from {}'.format(args.pretrain))
@@ -161,15 +157,14 @@ class TorchProgram:
 
 
 
-        train_iter, val_iter = BucketIterator.splits(
-            (train, train),  # 构建数据集所需的数据集
+        train_iter= BucketIterator(
+            train,  # 构建数据集所需的数据集
             #Todo batch
-            batch_sizes=(8, 8),
+            batch_size=args.batch_size,
             device=-1,  # 如果使用gpu，此处将-1更换为GPU的编号
-            sort_key=lambda x: len(x.comment_text),
+            sort_key=lambda x: x.source_length,
             # the BucketIterator needs to be told what function it should use to group the data.
-            sort_within_batch=False,
-            repeat=False  # we pass repeat=False because we want to wrap this Iterator layer.
+            sort_within_batch=True
         )
 
 
@@ -183,7 +178,7 @@ class TorchProgram:
 
 
             self.trainloader = train_iter
-            self.devloader = val_iter
+
 
         if args.test:
             #self.testloader = load_data_func('dev', vocab, args)
@@ -344,7 +339,7 @@ def main():
 
     dataset_files = {
         'seq2seq': {
-            'train': args.data_dir + '/formatted_movie_lines.txt',
+            'train': args.data_dir + '/real_data.txt',
             'dev': args.data_dir + '/formatted_movie_lines.txt',
             'bak':  '/formatted_movie_lines_bak.txt'
         },

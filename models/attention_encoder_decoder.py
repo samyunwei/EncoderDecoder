@@ -110,7 +110,7 @@ class AttenDecoder(nn.Module):
             h_0:layer*direction,batch,hidden
         '''
         output = self.fc(output) #batch,seq,vocab
-        output = F.log_softmax(output, dim= 2)
+        #output = F.softmax(output, dim= 2)
         return output, None
 
 

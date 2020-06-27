@@ -23,7 +23,7 @@ class MyDataset(data.Dataset):
                   ]
         examples = []
 
-        source = "happy!"
+        source = "You're asking me out."
 
         source_len = len(tokenizer(source))
 

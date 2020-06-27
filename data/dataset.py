@@ -66,13 +66,7 @@ class SnDataset(Dataset):
     def __getitem__(self, index):
         return self.data[index]
 
-import spacy
-spacy_en = spacy.load('en')
-
-def tokenizer(text): # create a tokenizer function
-    # 返回 a list of <class 'spacy.tokens.token.Token'>
-    return [tok.text for tok in spacy_en.tokenizer(text)]
-
+from data.text_utils import tokenizer
 
 class MyDataset(data.Dataset):
     def __init__(self, path,text_field,len_field, test=False, aug=False, **kwargs):
@@ -89,6 +83,7 @@ class MyDataset(data.Dataset):
         with codecs.open(path) as fin:
             for index, line in enumerate(fin):
 
+
                 if len(line[:-1].split("\t")) > 2:
                     source = " ".join(line[:-1].split("\t")[:-1])
                     target = line[:-1].split("\t")[-1]
@@ -98,7 +93,14 @@ class MyDataset(data.Dataset):
                 source_len = len(tokenizer(source)) + 2
                 target_len = len(tokenizer(target)) + 2
 
+
+
+                if target_len > text_field.fix_length:
+                    continue
+
+
                 examples.append(data.Example.fromlist([None, source, source_len, target, target_len], fields))
+
 
         super(MyDataset, self).__init__(examples, fields, **kwargs)
 
