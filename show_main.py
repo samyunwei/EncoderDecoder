@@ -46,7 +46,10 @@ if __name__ == '__main__':
 
     encoder = SN_MODELS["encoder"](embeddings, args)
     # atten = SN_MODELS["attention"](args.hidden_size * 4, 300)
-    decoder = SN_MODELS["decoder"](embeddings, args)
+    #decoder = SN_MODELS["decoder"](embeddings, args)
+    atten = SN_MODELS["attention"](args.hidden_size, 2, "general")
+    decoder = SN_MODELS["decoder"](embeddings, args, atten)
+
 
     model_class = SN_MODELS[args.model_name]
 

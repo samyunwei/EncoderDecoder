@@ -148,7 +148,10 @@ class TorchProgram:
 
         encoder = SN_MODELS["encoder"](embeddings, args)
        # atten = SN_MODELS["attention"](args.hidden_size * 4, 300)
-        decoder = SN_MODELS["decoder"](embeddings, args)
+        #Todo need to judge if use atten
+        atten = SN_MODELS["attention"](args.hidden_size, 2, "general")
+
+        decoder = SN_MODELS["decoder"](embeddings, args, atten)
 
         self.model = model_class(encoder, decoder)
 
@@ -341,8 +344,9 @@ def main():
 
     dataset_files = {
         'seq2seq': {
-            'train': args.data_dir + '/formatted_movie_lines_bak.txt',
-            'dev': args.data_dir + '/formatted_movie_lines.txt'
+            'train': args.data_dir + '/formatted_movie_lines.txt',
+            'dev': args.data_dir + '/formatted_movie_lines.txt',
+            'bak':  '/formatted_movie_lines_bak.txt'
         },
 
     }
