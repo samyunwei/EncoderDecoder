@@ -1,6 +1,6 @@
 #!/bin/bash
 source activate py35
-nohup                   \
+nohup               \
 python ./trainer.py     \
 --train                 \
 --name=seq2seq      \
@@ -11,9 +11,9 @@ seq2seq \
 --data_dir  \
 ./train_data  \
 --max_epoch \
-100  \
---load_dir  \
-./seq2seq/lm_99_5650.7593.pkl\
+10  \
+--pretrain \
+seq2seq/craw1.npz \
 >> lstm.log  2>&1 &
 
 
