@@ -16,7 +16,7 @@ with open("/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/TEXT.Fiel
 
 text_cos = np.load("/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/text_cos.npy")
 
-word_vector_path = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/train_data/craw1.npz.npz"
+word_vector_path = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/train_data/craw1.npz"
 word_vector = np.load(word_vector_path, allow_pickle=True)["embeddings"]
 
 target_file = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/train_data/bakeup_chat_target.txt"
