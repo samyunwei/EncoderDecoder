@@ -23,7 +23,7 @@ class MyDataset(data.Dataset):
                   ]
         examples = []
 
-        source = "what's xxxxx ?"
+        source = "I see"
 
         source_len = len(tokenizer(source))
 
@@ -36,7 +36,7 @@ class MyDataset(data.Dataset):
 
 if __name__ == '__main__':
     args = argument_parser()
-    with open("seq2seq/TEXT.Field", "rb")as f:
+    with open("seq2seq/bak/TEXT.Field", "rb")as f:
         TEXT = dill.load(f)
 
     LENGTH = data.Field(sequential=False, use_vocab=False)

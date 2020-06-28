@@ -44,7 +44,7 @@ def argument_parser():
     group.add_argument("--test_step", type=int, default=100,
                        help="log the train loss every n batches.")
 
-    group.add_argument("--min_freq", type=int, default=50,
+    group.add_argument("--min_freq", type=int, default=10,
                        help="the most word times")
 
     # model save dir

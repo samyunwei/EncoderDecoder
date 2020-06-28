@@ -137,8 +137,8 @@ class TorchProgram:
 
         if args.pretrain:
             logger.info('Load pretrain embeddings from {}'.format(args.pretrain))
-            #embeddings = load_pretrain_embedding(vocab, args.embed_size, args.pretrain)
-            #TODO 特定词向量
+            embeddings = torch.tensor(
+                np.load(args.pretrain, allow_pickle=True)["embeddings"].item().weight)
         else:
             embeddings = np.random.random((len(TEXT.vocab.itos), args.embed_size))
         args.TEXT = TEXT
