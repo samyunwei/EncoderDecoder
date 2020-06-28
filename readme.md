@@ -20,3 +20,6 @@ seq2seq
 ./seq2seq/bak/lm_6_6201.0966.pkl
 --max_epoch
 1
+
+
+/lm_99_5650.7593.pkl

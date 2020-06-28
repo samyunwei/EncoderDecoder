@@ -12,6 +12,8 @@ seq2seq \
 ./train_data  \
 --max_epoch \
 100  \
+--load_dir  \
+./seq2seq/lm_99_5650.7593.pkl\
 >> lstm.log  2>&1 &
 
 

@@ -22,7 +22,7 @@ class GreedySearchDecoder(nn.Module):
         # Decoder的初始输入是SOS
         #decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * SOS_token
         #Todo 要修改
-        decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * self.TEXT.vocab.stoi["hi"]
+        decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * self.TEXT.vocab.stoi["<sos>"]
         # 用于保存解码结果的tensor
         all_tokens = t.zeros([0], device=self.device, dtype=t.long)
         all_scores = t.zeros([0], device=self.device)

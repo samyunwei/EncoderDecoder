@@ -170,7 +170,7 @@ class LuongAttnDecoderRNN(nn.Module):
         # out是(500, 词典大小=7826)
         output = self.out(concat_output)
         # 用softmax变成概率，表示当前时刻输出每个词的概率。
-        output = F.softmax(output, dim=1)
+        output = F.log_softmax(output, dim=1)
         # 返回 output和新的隐状态
         return output, hidden
 
