@@ -95,7 +95,7 @@ class MyDataset(data.Dataset):
 
 
 
-                if target_len > text_field.fix_length:
+                if target_len > text_field.fix_length or source_len > text_field.fix_length:
                     continue
 
 

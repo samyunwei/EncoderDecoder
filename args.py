@@ -28,7 +28,7 @@ def argument_parser():
     # Train config
     group = parser.add_argument_group('Train config')
     group.add_argument('--model_name', type=str, default='bow', help='train model type')
-    group.add_argument('--batch_size', type=int, default=64,
+    group.add_argument('--batch_size', type=int, default=256,
                        help='The sequence number of a mini-batch data.')
     group.add_argument("--lr", type=float, default=0.001,
                        help="Learning rate used to train the model.")
@@ -44,7 +44,7 @@ def argument_parser():
     group.add_argument("--test_step", type=int, default=100,
                        help="log the train loss every n batches.")
 
-    group.add_argument("--min_freq", type=int, default=10,
+    group.add_argument("--min_freq", type=int, default=50,
                        help="the most word times")
 
     # model save dir

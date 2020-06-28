@@ -8,15 +8,17 @@ from .no_attention_encoder_decoder import PlainSeq2Seq,PlainDecoder,PlainEncoder
 from .attention_encoder_decoder import Encoder,AttenDecoder,AttenSeq2Seq,Attention
 from .criterion import  LanguageModeCriterion
 from .greedy_encoder_docoder import GreedySearchDecoder
+from .test_encoder_decoder import EncoderRNN,Attn,LuongAttnDecoderRNN,TestEncoderDecoder
+
 
 
 SN_MODELS = {
-    'lm': AttenSeq2Seq,
-    'encoder': Encoder,
-    'decoder': AttenDecoder,
+    'lm': TestEncoderDecoder,
+    'encoder': EncoderRNN,
+    'decoder': LuongAttnDecoderRNN,
     'criterion': LanguageModeCriterion,
     "greedy": GreedySearchDecoder,
-    'attention': Attention
+    'attention': Attn
 }
 
 

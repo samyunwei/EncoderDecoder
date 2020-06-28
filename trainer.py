@@ -128,6 +128,7 @@ class TorchProgram:
 
 
 
+
         # 统计词频
         #Todo ？
        # TEXT.vocab.freqs.most_common(args.most_common)
@@ -145,14 +146,14 @@ class TorchProgram:
         encoder = SN_MODELS["encoder"](embeddings, args)
        # atten = SN_MODELS["attention"](args.hidden_size * 4, 300)
         #Todo need to judge if use atten
-        atten = SN_MODELS["attention"](args.hidden_size, 2, "general")
+        #atten = SN_MODELS["attention"](args.hidden_size, 2, "general")
+        atten = SN_MODELS["attention"](args.hidden_size, "general")
 
         decoder = SN_MODELS["decoder"](embeddings, args, atten)
 
-        self.model = model_class(encoder, decoder)
+        self.model = model_class(encoder, decoder, args)
 
         self.inputs_cols = ['text_raw_indices', 'lengths'] #?好像可去掉
-
 
 
 
@@ -262,20 +263,23 @@ class TorchProgram:
 
             #self.test(self.devloader)
 
-        if not os.path.exists(self.args.save_dir):
-            os.makedirs(self.args.save_dir)
-        best_mode_path = '{}/{}_{}_{:.4f}.pkl'.format(self.args.save_dir,
-                                                  self.args.model_name,
-                                                  str(epoch), total_loss)
+            if total_loss < min_loss:
+                min_loss = total_loss
 
-        text_path = '{}/{}_{}_text.pkl'.format(self.args.save_dir,
-                                                      self.args.model_name,
-                                                      str(epoch), total_loss)
+                if not os.path.exists(self.args.save_dir):
+                    os.makedirs(self.args.save_dir)
+                best_mode_path = '{}/{}_{}_{:.4f}.pkl'.format(self.args.save_dir,
+                                                          self.args.model_name,
+                                                          str(epoch), total_loss)
 
-        torch.save({
-            'model': self.model.state_dict(),
-            'epoch': epoch
-        }, best_mode_path)
+                text_path = '{}/{}_{}_text.pkl'.format(self.args.save_dir,
+                                                              self.args.model_name,
+                                                              str(epoch), total_loss)
+
+                torch.save({
+                    'model': self.model.state_dict(),
+                    'epoch': epoch
+                }, best_mode_path)
 
         import dill
         with open("seq2seq/TEXT.Field", "wb")as f:
@@ -339,7 +343,7 @@ def main():
 
     dataset_files = {
         'seq2seq': {
-            'train': args.data_dir + '/real_data.txt',
+            'train': args.data_dir + '/formatted_movie_lines.txt',
             'dev': args.data_dir + '/formatted_movie_lines.txt',
             'bak':  '/formatted_movie_lines_bak.txt'
         },

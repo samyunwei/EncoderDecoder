@@ -23,7 +23,7 @@ class MyDataset(data.Dataset):
                   ]
         examples = []
 
-        source = "You're asking me out."
+        source = "what's xxxxx ?"
 
         source_len = len(tokenizer(source))
 
@@ -47,13 +47,14 @@ if __name__ == '__main__':
     encoder = SN_MODELS["encoder"](embeddings, args)
     # atten = SN_MODELS["attention"](args.hidden_size * 4, 300)
     #decoder = SN_MODELS["decoder"](embeddings, args)
-    atten = SN_MODELS["attention"](args.hidden_size, 2, "general")
+    atten = SN_MODELS["attention"](args.hidden_size,"general")
     decoder = SN_MODELS["decoder"](embeddings, args, atten)
 
 
     model_class = SN_MODELS[args.model_name]
 
-    model = model_class(encoder, decoder)
+   # model = model_class(encoder, decoder, args)
+    model = model_class(encoder, decoder, args)
 
     checkpoint = t.load(args.load_dir)
     model.load_state_dict(checkpoint['model'])
@@ -74,7 +75,7 @@ if __name__ == '__main__':
         result,_ = greedy_model(batch_data.source_text, batch_data.source_length)
 
         result = result.detach().numpy()
-        result = result[ : result.tolist().index(end_num) ]
+
 
         for ele in result:
            print( TEXT.vocab.itos[ele] )

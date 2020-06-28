@@ -22,22 +22,28 @@ class GreedySearchDecoder(nn.Module):
         # Decoder的初始输入是SOS
         #decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * SOS_token
         #Todo 要修改
-        decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * self.TEXT.vocab.stoi["<sos>"]
+        decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * self.TEXT.vocab.stoi["you"]
         # 用于保存解码结果的tensor
         all_tokens = t.zeros([0], device=self.device, dtype=t.long)
         all_scores = t.zeros([0], device=self.device)
         # 循环，这里只使用长度限制，后面处理的时候把EOS去掉了。
         for _ in range(max_length):
             # Decoder forward一步
-            decoder_output, decoder_hidden = self.decoder(decoder_input, target_length=None, context=decoder_hidden, encoder_outputs=encoder_outputs)
+            #other
+            #decoder_output, decoder_hidden = self.decoder(decoder_input, target_length=None, context=decoder_hidden, encoder_outputs=encoder_outputs)
+
+            decoder_output, decoder_hidden = self.decoder(decoder_input, last_hidden=decoder_hidden,
+                                                          encoder_outputs=encoder_outputs)
+
             # decoder_outputs是(batch=1, vob_size)
             # 使用max返回概率最大的词和得分
-            decoder_scores, decoder_input = t.max(decoder_output, dim=2)
+            decoder_scores, decoder_input = t.max(decoder_output, dim=1)
             # 把解码结果保存到all_tokens和all_scores里
             all_tokens = t.cat((all_tokens, decoder_input), dim=0)
             all_scores = t.cat((all_scores, decoder_scores), dim=0)
+            decoder_input = t.unsqueeze(decoder_input,dim=0)
             # decoder_input是当前时刻输出的词的ID，这是个一维的向量，因为max会减少一维。
             
 
         # 返回所有的词和得分。
-        return t.squeeze(all_tokens, dim=1), all_scores
+        return all_tokens, all_scores
