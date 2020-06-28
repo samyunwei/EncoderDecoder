@@ -47,6 +47,7 @@ if __name__ == '__main__':
             word = line.split(" ")[:word_index][0]
             try:
                 index = word_to_idx[word]
+                print("line = {0}".format(index))
             except KeyError as e:
                 continue
             else:
@@ -66,5 +67,5 @@ if __name__ == '__main__':
 
 
     embedding = nn.Embedding.from_pretrained(weight)
-    filename_trimmed_dir = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/craw.npz"
+    filename_trimmed_dir = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/craw1.npz"
     np.savez_compressed(filename_trimmed_dir, embeddings=embedding)

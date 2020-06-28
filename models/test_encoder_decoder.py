@@ -13,7 +13,7 @@ class EncoderRNN(nn.Module):
         self.n_layers = opts.num_layers
         self.hidden_size = opts.hidden_size
         self.embedding = nn.Embedding.from_pretrained(embeddings=t.FloatTensor(embeddings),
-                                                  freeze=True)
+                                                  freeze=False)
 
         # 初始化GRU，这里输入和hidden大小都是hidden_size，因为我们这里假设embedding层的输出大小是hidden_size
         # 如果只有一层，那么不进行Dropout，否则使用传入的参数dropout进行GRU的Dropout。
@@ -123,7 +123,7 @@ class LuongAttnDecoderRNN(nn.Module):
 
         # 定义Decoder的layers
         self.embedding = nn.Embedding.from_pretrained(embeddings=t.FloatTensor(embeddings),
-                                                   freeze=True)
+                                                   freeze=False)
         self.embedding_dropout = nn.Dropout(self.dropout)
         self.gru = nn.GRU(opts.embed_size, self.hidden_size, self.n_layers, dropout=self.dropout,
                           bidirectional=True, batch_first=True)
@@ -170,7 +170,7 @@ class LuongAttnDecoderRNN(nn.Module):
         # out是(500, 词典大小=7826)
         output = self.out(concat_output)
         # 用softmax变成概率，表示当前时刻输出每个词的概率。
-        output = F.log_softmax(output, dim=1)
+        output = F.softmax(output, dim=1)
         # 返回 output和新的隐状态
         return output, hidden
 

@@ -25,7 +25,7 @@ if __name__ == '__main__':
         TEXT = dill.load(f)
 
     source_path = "train_data/bakeup_chat_source.txt"
-    word_vector_path = "train_data/word_vector.npz"
+    word_vector_path = "train_data/craw1.npz"
 
     text_cos = []
     word_vector = np.load(word_vector_path, allow_pickle=True)["embeddings"]
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
             token_cos = 0
             for token in tokens:
-               token_cos += word_vector.item().weight[TEXT.vocab.stoi[token]]
+               token_cos += word_vector.item().weight[TEXT.vocab.stoi[token.lower()]]
             text_cos.append(token_cos)
 
     import numpy as np

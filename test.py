@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     text_cos = np.load("seq2seq/text_cos.npy")
 
-    word_vector_path = "train_data/word_vector.npz"
+    word_vector_path = "seq2seq/craw1.npz"
     word_vector = np.load(word_vector_path, allow_pickle=True)["embeddings"]
     
     target_file = "train_data/bakeup_chat_target.txt"
@@ -40,16 +40,18 @@ if __name__ == '__main__':
             target_text.append( " ".join(text_utils.tokenizer(line)) )
         
 
-    msg = "Can you walk"
+    msg = "Is it cramped in the computer?"
     tokens = text_utils.tokenizer(msg)
 
 
 
     msg_cos = 0
     for token in tokens:
-        msg_cos += word_vector.item().weight[TEXT.vocab.stoi[token]]
+        msg_cos += word_vector.item().weight[TEXT.vocab.stoi[token.lower()]]
 
     scores = np.dot(msg_cos, text_cos.T)
     index = np.argmax(scores)
     print(target_text[index])
+
+
     

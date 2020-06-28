@@ -11,7 +11,7 @@ seq2seq \
 --data_dir  \
 ./train_data  \
 --max_epoch \
-10  \
+100  \
 --pretrain \
 seq2seq/craw1.npz \
 >> lstm.log  2>&1 &

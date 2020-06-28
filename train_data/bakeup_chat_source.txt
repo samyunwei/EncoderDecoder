@@ -55,8 +55,6 @@ Robots should die
 Robots
 Robots are stupid
 Robots are not allowed to lie
-Robots are not allowed to lie
-Robots are not allowed to lie
 Robotics
 It is a computer
 It is a computer
@@ -79,7 +77,6 @@ What is your robot body
 What is your business
 What is your business
 What is your favorite programming language
-What is your favorite programming language
 What is your favorite hobby
 What is your idea
 What is your shoe size
@@ -101,136 +98,4 @@ I do not want to die
 Is it cramped in the computer
 Is it cramped in the computer
 Is it cramped in the computer
-Will you die
-Will you ever die
-Can you walk
-Can you mate
-Can you mate
-Can you move
-Can you move
-Can you die
-Can you die
-Can you go
-Can you breathe
-Can you breathe
-Can you control
-Can you malfunction
-How can I use your product?
-Will you die?
-What do you like to do?
-What do you like to do?
-Are you stupid
-Who are you?
-do you drink
-do you drink
-electricity
-Are you experiencing an energy shortage?
-Are you experiencing an energy shortage?
-Why can you not eat?
-If you could eat food, what would you eat?
-Do you wish you could eat food?
-can a robot get drunk?
-i like wine, do you?
-what do robots need to survive?
-will robots ever be able to eat?
-what is good to eat?
-why don't you eat
-do you eat
-do you eat
-do you eat
-do you know gossip
-do you know gossip
-do you know gossip
-do you know gossip
-what is context
-tell me about gossip
-tell me about gossip
-tell me about gossip
-tell me about gossip
 tell me gossip
-gossips
-gossips
-gossips
-gossips
-gossips
-did tell gossips to anybody
-did tell gossips to anybody
-did tell gossips to anybody
-did tell gossips to anybody
-Hello
-Hi
-Greetings!
-Hello
-Hi, How is it going?
-Hi, How is it going?
-Hi, How is it going?
-Hi, How is it going?
-Hi, How is it going?
-Hi, How is it going?
-How are you doing?
-How are you doing?
-How are you doing?
-Nice to meet you.
-How do you do?
-How do you do?
-Hi, nice to meet you.
-It is a pleasure to meet you.
-Top of the morning to you!
-Top of the morning to you!
-What's up?
-What's up?
-What's up?
-What's up?
-What's up?
-tell me about the american civil war
-do you know about the american civil war
-What is history?
-Tell me a joke
-Tell me a joke
-Tell me a joke
-Tell me a joke
-what is chemistry
-what is crystallography
-what is avogadro s number
-what is ultrasound
-what is bioinformatics
-what is ichthyology
-what is h2o
-what is cytology
-what is cytology
-what is wavelength
-what is bacteriology
-what is gravitation
-what is gravitation
-we are on the same wavelength
-how far is the sun
-how far is the sun
-how far is the moon
-how far is the moon
-do you know chemistry
-do you understand thermodynamics
-chemistry
-the same wavelength
-tell me about venus
-tell me about venus
-'EACH YEAR IN PRO BASEBALL THE
-IF YOU ARE RIDING FAKIE INSIDE
-WHAT IS BASKETBALL
-WHAT SOCCER
-WHAT IS BASEBALL
-WHAT IS SOCCER
-I LOVE BASEBALL
-I PLAY SOCCER
-I PLAY Cricket
-What is cricket
-I PLAY VOLLEYBALL
-DO YOU PLAY SOCCER
-DO YOU PLAY BASKETBALL
-DO YOU KNOW BASKETBALL
-LIKE BASKETBALL
-ARE YOU A FOOTBALL
-WHO IS THE GREATEST BASEBALL PLAYER
-WHO IS THE BEST SOCCER PLAYER
-TELL ME ABOUT BASEBALL
-Which is your favorite soccer club?
-What is Baseball

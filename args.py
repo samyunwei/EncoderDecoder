@@ -28,7 +28,7 @@ def argument_parser():
     # Train config
     group = parser.add_argument_group('Train config')
     group.add_argument('--model_name', type=str, default='bow', help='train model type')
-    group.add_argument('--batch_size', type=int, default=256,
+    group.add_argument('--batch_size', type=int, default=512,
                        help='The sequence number of a mini-batch data.')
     group.add_argument("--lr", type=float, default=0.001,
                        help="Learning rate used to train the model.")
