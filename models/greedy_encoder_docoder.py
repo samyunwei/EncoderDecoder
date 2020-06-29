@@ -41,7 +41,12 @@ class GreedySearchDecoder(nn.Module):
             # 把解码结果保存到all_tokens和all_scores里
             all_tokens = t.cat((all_tokens, decoder_input), dim=0)
             all_scores = t.cat((all_scores, decoder_scores), dim=0)
-            decoder_input = t.unsqueeze(decoder_input,dim=0)
+
+            import numpy as np
+            random_key =  np.random.randint(low=1, high= 9432, size=(1))
+            decoder_input = t.ones(1, 1, device=self.device, dtype=t.long) * self.TEXT.vocab.stoi[ self.TEXT.vocab.itos[random_key[0]]  ]
+
+            #decoder_input = t.unsqueeze(decoder_input,dim=0)
             # decoder_input是当前时刻输出的词的ID，这是个一维的向量，因为max会减少一维。
             
 

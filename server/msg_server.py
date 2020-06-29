@@ -11,15 +11,15 @@ import codecs
 import numpy as np
 import dill
 
-with open("seq2seq/TEXT.Field", "rb") as f:
+with open("/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/TEXT.Field", "rb") as f:
     TEXT = dill.load(f)
 
-text_cos = np.load("seq2seq/text_cos.npy")
+text_cos = np.load("/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/seq2seq/text_cos.npy")
 
-word_vector_path = "EncoderDecoder/train_data/craw1.npz.npz"
+word_vector_path = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/train_data/craw1.npz.npz"
 word_vector = np.load(word_vector_path, allow_pickle=True)["embeddings"]
 
-target_file = "train_data/bakeup_chat_target.txt"
+target_file = "/home/demo1/womin/piguanghua/pycharm/EncoderDecoder/train_data/bakeup_chat_target.txt"
 target_text = []
 with codecs.open(target_file, "r") as fin:
     for line in iter(fin):
